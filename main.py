@@ -1,4 +1,5 @@
-import random
+import os
+import time
 
 # Função para exibir a palavra com letras adivinhadas
 def mostrar_palavra(palavra, letras_adivinhadas):
@@ -78,7 +79,7 @@ def mostrar_forca(tentativas):
 # Função principal para jogar o jogo da forca
 def jogar():
 
-    #Palavra e Dica usado no jogo
+    # Palavra e Dica usado no jogo
     palavra = "algoritmo"
     dica = "Sequência de instruções para resolver um problema computacional."
     letras_adivinhadas = set() 
@@ -86,10 +87,11 @@ def jogar():
     tentativas = 6
 
     print(f"Dica: {dica}")
-    print(mostrar_palavra(palavra, letras_adivinhadas))
 
     while tentativas > 0 and not palavra_adivinhada:
+        os.system('cls')
         print(mostrar_forca(tentativas))
+        print(mostrar_palavra(palavra, letras_adivinhadas))  # Mostra a palavra após limpar a tela
         adivinhar = input("Adivinhe uma letra: ").lower()
 
         if adivinhar in letras_adivinhadas:
@@ -109,12 +111,19 @@ def jogar():
             palavra_adivinhada = True
 
     if palavra_adivinhada:
-        print("Parabens! Jogo finalizado.")
+        print("Parabens! Ganhou.")
         print(f"A palavra era: {palavra}")
+
+        print("Encerrando jogo")
+        time.sleep(5)
     else:
+        os.system('cls')
         print(mostrar_forca(tentativas))
-        print("Fim de jogo! Voce perdeu.")
+        print("Fim de jogo! Perdeu.")
         print(f"A palavra era: {palavra}")
+
+        print("Encerrando jogo")
+        time.sleep(5)
 
 # Executar o jogo
 if __name__ == "__main__":
